@@ -1,0 +1,12 @@
+<!-- asset -->
+<mujoco model="chassis_asset">
+    <mesh name="chassis_lwheel_front_link1" file="G2/T2/chassis_lwheel_front_link1.STL" scale="1 1 1" />
+    <mesh name="chassis_lwheel_front_link2" file="G2/T2/chassis_lwheel_front_link2.STL" scale="1 1 1" />
+    <mesh name="chassis_lwheel_rear_link1"  file="G2/T2/chassis_lwheel_rear_link1.STL"  scale="1 1 1" />
+    <mesh name="chassis_lwheel_rear_link2"  file="G2/T2/chassis_lwheel_rear_link2.STL"  scale="1 1 1" />
+
+    <mesh name="chassis_rwheel_front_link1" file="G2/T2/chassis_rwheel_front_link1.STL" scale="1 1 1" />
+    <mesh name="chassis_rwheel_front_link2" file="G2/T2/chassis_rwheel_front_link2.STL" scale="1 1 1" />
+    <mesh name="chassis_rwheel_rear_link1"  file="G2/T2/chassis_rwheel_rear_link1.STL"  scale="1 1 1" />
+    <mesh name="chassis_rwheel_rear_link2"  file="G2/T2/chassis_rwheel_rear_link2.STL"  scale="1 1 1" />
+</mujoco>

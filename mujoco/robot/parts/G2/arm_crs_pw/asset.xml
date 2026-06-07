@@ -1,0 +1,11 @@
+<!-- asset -->
+<mujoco model="arm_asset">
+    <mesh name="BASE_P6" file="arm/crs/arm_base_link.STL"/>
+    <mesh name="Link1_P6" file="arm/crs/arm_link1.STL"/>
+    <mesh name="Link2_P6" file="arm/crs/arm_link2.STL"/>
+    <mesh name="Link3_P6" file="arm/crs/arm_link3.STL"/>
+    <mesh name="Link4_P6" file="arm/crs/arm_link4.STL"/>
+    <mesh name="Link5_P6" file="arm/crs/arm_link5.STL"/>
+    <mesh name="Link6_P6" file="arm/crs/arm_link6.STL"/>
+    <mesh name="Link7_P6" file="arm/crs/arm_link7.STL"/>
+</mujoco>

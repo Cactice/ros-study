@@ -1,0 +1,211 @@
+<mujoco model="G2">
+    <!-- ========================================
+         Compiler and Option Settings
+         ======================================== -->
+    <compiler
+        eulerseq="XYZ"
+        fitaabb="true"
+        angle='radian'
+        meshdir="robot/parts/meshes"
+        autolimits="true" />
+    <option
+        timestep='0.001'
+        integrator='implicitfast' />
+
+    <!-- Alternative option configuration (commented out) -->
+    <!-- <option timestep='0.001' integrator="implicitfast" cone="elliptic" impratio="1000" noslip_iterations="3">
+        <flag multiccd="enable"/>
+    </option> -->
+
+    <!-- ========================================
+         Default Settings
+         ======================================== -->
+    <default>
+        <!-- Default geometry properties -->
+        <geom
+            contype="0"
+            conaffinity="0"
+            solref="0.005 5"
+            condim="3"
+            friction="1" />
+
+        <!-- Collision class defaults -->
+        <default class="collision">
+            <geom
+                contype="7"
+                conaffinity="4" />
+        </default>
+
+        <!-- Alternative visual and collision classes (commented out) -->
+        <!-- <default class="visual">
+            <geom type="mesh" contype="0" conaffinity="0" group="2" density="0"/>
+        </default>
+
+        <default class="collision">
+            <geom type="mesh" contype="1" conaffinity="1" group="3" rgba="1 1 1 1"/>
+        </default> -->
+
+        <!-- Joint damping defaults -->
+        <default class="base_joint">
+            <joint damping="100.0" />
+            <!-- <joint frictionloss="0.01" armature="0.1" stiffness="0.0" damping="100.0"/> -->
+        </default>
+
+        <default class="body_joint">
+            <joint damping="100.0" />
+            <!-- <joint frictionloss="0.01" armature="0.1" stiffness="0.0" damping="100.0"/> -->
+        </default>
+
+        <default class="arm_joint">
+            <joint damping="100.0" />
+            <!-- <joint frictionloss="0.01" armature="0.1" stiffness="0.0" damping="100.0"/> -->
+        </default>
+
+        <default class="hand_joint">
+            <joint type="hinge" limited="true" damping="0.3" armature="0.01" margin="0.01"
+                frictionloss="0.1" />
+        </default>
+        <default class="plastic_visual">
+            <geom type="mesh" contype="0" conaffinity="0" group="2" />
+        </default>
+        <default class="plastic_collision">
+            <geom rgba="1 1 1 1" type="mesh" density="662" friction="1 0.005 0.001" condim="3"
+                margin="0.0005" contype="1" conaffinity="1" group="3" />
+        </default>
+    </default>
+
+    <!-- ========================================
+         Asset Definitions
+         ======================================== -->
+    <asset>
+        <include file="robot/parts/G2/chassis/asset.xml" />
+        <include file="robot/parts/G2/body_t2_crs_pw/asset.xml" />
+        <include file="robot/parts/G2/arm_crs_pw/asset.xml" />
+        <include file="robot/parts/G2/hand_pw/asset.xml" />
+    </asset>
+
+    <!-- ========================================
+         World Body Structure
+         ======================================== -->
+    <worldbody>
+        <!-- ========================================
+             Lighting Configuration
+             ======================================== -->
+        <light
+            name="spotlight"
+            mode="targetbodycom"
+            target="base_link"
+            pos="0 0 2" />
+
+        <!-- ========================================
+             Base Link (Main Robot Body)
+             ======================================== -->
+        <body name="base_link" pos="0.0 0.0 0.0">
+            <!-- ========================================
+                 Camera Configuration
+                 ======================================== -->
+            <camera
+                name="track"
+                pos="0 -3 1"
+                zaxis="0 -1 0.5"
+                mode="track" />
+
+            <!-- ========================================
+                 Inertial Properties from G2_T2_zy_crs.urdf
+                 ======================================== -->
+            <inertial
+                pos="-0.003487 0.006148 0.096659"
+                quat="1 0 0 0"
+                mass="73"
+                diaginertia="1.295194 1.778283 2.471865"/>
+
+            <!-- ========================================
+                 Joint Configuration
+                 ======================================== -->
+            <joint
+                name="fixed_base_joint"
+                type="free"
+                limited="false"
+                actuatorfrclimited="false"/>
+
+            <!-- ========================================
+                 Geometry
+                 ======================================== -->
+            <geom
+                type="mesh"
+                contype="0"
+                conaffinity="0"
+                mass="9999"
+                group="1"
+                density="0"
+                rgba="0.8 0.4 0 1"
+                mesh="base_link"/>
+
+            <!-- Base link coarse geometries from model_t2_zy_crs.xml -->
+            <!-- <geom name="base_link_coarse_0"
+                   size="0.313366 0.0870454 0.162913"
+                   pos="0.0112473 -0.230945 0.162912"
+                   type="box"
+                   rgba="1 1 1 1"/>
+            <geom name="base_link_coarse_1"
+                   size="0.313337 0.0935742 0.162913"
+                   pos="0.0112773 0.234417 0.162912"
+                   type="box"
+                   rgba="1 1 1 1"/>
+            <geom name="base_link_coarse_2"
+                   size="0.312301 0.119351 0.0348391"
+                   pos="0.0123007 -0.0130711 0.114839"
+                   type="box"
+                   rgba="1 1 1 1"/> -->
+
+            <!-- ========================================
+                 Body Link Chain
+                 ======================================== -->
+            <body name="body_site" pos="0 0 0" euler="0 0 0">
+                <include file="robot/parts/G2/body_t2_crs_pw/link.xml" />
+            </body>
+
+            <!-- ========================================
+                 Chassis Link Chain
+                 ======================================== -->
+            <body name="chassis_site" pos="0 0 0" euler="0 0 0">
+                <include file="robot/parts/G2/chassis/link.xml" />
+            </body>
+            <site name="imu_site" pos="0 0 0" size="0.01" />
+        </body>
+    </worldbody>
+
+    <!-- ========================================
+         Actuator and Sensor Definitions
+         ======================================== -->
+    <include file="robot/parts/G2/body_t2_crs_pw/actuator_sensor.xml" />
+    <include file="robot/parts/G2/chassis/actuator_sensor.xml" />
+    <include file="robot/parts/G2/arm_crs_pw/actuator_sensor.xml" />
+    <include file="robot/parts/G2/hand_pw/actuator_left_sensor.xml" />
+    <include file="robot/parts/G2/hand_pw/actuator_right_sensor.xml" />
+
+    <keyframe>
+    <!-- init_pose: 共 41 个值，按实际 qpos 数组顺序 -->
+    <!-- qpos[0-6]: free root (7) [x y z qw qx qy qz] -->
+    <!-- qpos[7-11]: body (5) idx01..idx05 -->
+    <!-- qpos[12-18]: arm_l (7) idx21..idx27 -->
+    <!-- qpos[19-20]: gripper_l (2) idx41, idx31 -->
+    <!-- qpos[21-27]: arm_r (7) idx61..idx67 -->
+    <!-- qpos[28-29]: gripper_r (2) idx81, idx71 -->
+    <!-- qpos[30-32]: head (3) idx11, idx12, idx13 -->
+    <!-- qpos[33-40]: chassis (8) idx111, idx112, idx131, idx132, idx141, idx142, idx121, idx122 -->
+    <key name="init_pose" qpos="
+        0 0 0.03 1 0 0 0 
+        -0.83423  1.2172  0.10025 0.0 0.0
+        0 0 0 0 0 0 0
+        0 0
+        0 0 0 0 0 0 0
+        0 0
+        0 0 0
+        0.7854 0 -0.7854 0 0.7854 0 -0.7854 0
+    "/>
+    </keyframe>
+
+
+
+</mujoco>
