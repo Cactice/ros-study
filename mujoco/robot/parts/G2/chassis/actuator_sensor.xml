@@ -1,0 +1,61 @@
+<!-- actuator and sensor -->
+<mujoco model="chassis_actuator_sensor">
+    <actuator>
+        <!-- position and velocity control actuator -->
+        <position name="motor_idx111_chassis_lwheel_front_joint1"
+            joint="idx111_chassis_lwheel_front_joint1" kp="1000" kv="80" />
+        <velocity name="motor_idx112_chassis_lwheel_front_joint2"
+            joint="idx112_chassis_lwheel_front_joint2" kv="10" />
+        <position name="motor_idx121_chassis_lwheel_rear_joint1"
+            joint="idx121_chassis_lwheel_rear_joint1" kp="1000" kv="80" />
+        <velocity name="motor_idx122_chassis_lwheel_rear_joint2"
+            joint="idx122_chassis_lwheel_rear_joint2" kv="10" />
+        <position name="motor_idx131_chassis_rwheel_front_joint1"
+            joint="idx131_chassis_rwheel_front_joint1" kp="1000" kv="80" />
+        <velocity name="motor_idx132_chassis_rwheel_front_joint2"
+            joint="idx132_chassis_rwheel_front_joint2" kv="10" />
+        <position name="motor_idx141_chassis_rwheel_rear_joint1"
+            joint="idx141_chassis_rwheel_rear_joint1" kp="1000" kv="80" />
+        <velocity name="motor_idx142_chassis_rwheel_rear_joint2"
+            joint="idx142_chassis_rwheel_rear_joint2" kv="10" />
+    </actuator>
+
+    <sensor>
+        <!-- position sensor -->
+        <jointpos name="jointpos_idx111_chassis_lwheel_front_joint1"
+            joint="idx111_chassis_lwheel_front_joint1" noise="0.0" />
+        <jointpos name="jointpos_idx112_chassis_lwheel_front_joint2"
+            joint="idx112_chassis_lwheel_front_joint2" noise="0.0" cutoff="3.14" />
+        <jointpos name="jointpos_idx121_chassis_lwheel_rear_joint1"
+            joint="idx121_chassis_lwheel_rear_joint1" noise="0.0" />
+        <jointpos name="jointpos_idx122_chassis_lwheel_rear_joint2"
+            joint="idx122_chassis_lwheel_rear_joint2" noise="0.0" cutoff="3.14" />
+        <jointpos name="jointpos_idx131_chassis_rwheel_front_joint1"
+            joint="idx131_chassis_rwheel_front_joint1" noise="0.0" />
+        <jointpos name="jointpos_idx132_chassis_rwheel_front_joint2"
+            joint="idx132_chassis_rwheel_front_joint2" noise="0.0" cutoff="3.14" />
+        <jointpos name="jointpos_idx141_chassis_rwheel_rear_joint1"
+            joint="idx141_chassis_rwheel_rear_joint1" noise="0.0" />
+        <jointpos name="jointpos_idx142_chassis_rwheel_rear_joint2"
+            joint="idx142_chassis_rwheel_rear_joint2" noise="0.0" cutoff="3.14" />
+
+        <!-- velocity sensor -->
+        <jointvel name="jointvel_idx111_chassis_lwheel_front_joint1"
+            joint="idx111_chassis_lwheel_front_joint1" noise="0.0" />
+        <jointvel name="jointvel_idx112_chassis_lwheel_front_joint2"
+            joint="idx112_chassis_lwheel_front_joint2" noise="0.0" />
+        <jointvel name="jointvel_idx121_chassis_lwheel_rear_joint1"
+            joint="idx121_chassis_lwheel_rear_joint1" noise="0.0" />
+        <jointvel name="jointvel_idx122_chassis_lwheel_rear_joint2"
+            joint="idx122_chassis_lwheel_rear_joint2" noise="0.0" />
+        <jointvel name="jointvel_idx131_chassis_rwheel_front_joint1"
+            joint="idx131_chassis_rwheel_front_joint1" noise="0.0" />
+        <jointvel name="jointvel_idx132_chassis_rwheel_front_joint2"
+            joint="idx132_chassis_rwheel_front_joint2" noise="0.0" />
+        <jointvel name="jointvel_idx141_chassis_rwheel_rear_joint1"
+            joint="idx141_chassis_rwheel_rear_joint1" noise="0.0" />
+        <jointvel name="jointvel_idx142_chassis_rwheel_rear_joint2"
+            joint="idx142_chassis_rwheel_rear_joint2" noise="0.0" />
+    </sensor>
+
+</mujoco>

@@ -1,0 +1,12 @@
+<!-- asset -->
+<mujoco model="body_asset">
+    <mesh name="base_link"  file="G2/T2/base_link.STL"  scale="1 1 1" />
+    <mesh name="body_link1" file="G2/T2/body_link1.STL" scale="1 1 1" />
+    <mesh name="body_link2" file="G2/T2/body_link2.STL" scale="1 1 1" />
+    <mesh name="body_link3" file="G2/T2/body_link3.STL" scale="1 1 1" />
+    <mesh name="body_link4" file="G2/T2/body_link4.STL" scale="1 1 1" />
+    <mesh name="body_link5" file="G2/T2/body_link5.STL" scale="1 1 1" />
+    <mesh name="head_link1" file="G2/T2/head_link1.STL" scale="1 1 1" />
+    <mesh name="head_link2" file="G2/T2/head_link2.STL" scale="1 1 1" />
+    <mesh name="head_link3" file="G2/T2/head_link3.STL" scale="1 1 1" />
+</mujoco>

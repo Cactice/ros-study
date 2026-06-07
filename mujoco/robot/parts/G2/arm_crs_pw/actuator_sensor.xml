@@ -1,0 +1,83 @@
+<!-- actuator and sensor -->
+<mujoco model="arm_actuator_sensor">
+    <actuator>
+        <!-- position control actuator -->
+        <position name="position_idx21_arm_l_joint1" joint="idx21_arm_l_joint1" kp="10000" kv="400" />
+        <position name="position_idx22_arm_l_joint2" joint="idx22_arm_l_joint2" kp="10000" kv="400" />
+        <position name="position_idx23_arm_l_joint3" joint="idx23_arm_l_joint3" kp="10000" kv="160" />
+        <position name="position_idx24_arm_l_joint4" joint="idx24_arm_l_joint4" kp="10000" kv="160" />
+        <position name="position_idx25_arm_l_joint5" joint="idx25_arm_l_joint5" kp="10000" kv="120" />
+        <position name="position_idx26_arm_l_joint6" joint="idx26_arm_l_joint6" kp="10000" kv="120" />
+        <position name="position_idx27_arm_l_joint7" joint="idx27_arm_l_joint7" kp="10000" kv="120" />
+        <position name="position_idx61_arm_r_joint1" joint="idx61_arm_r_joint1" kp="10000" kv="400" />
+        <position name="position_idx62_arm_r_joint2" joint="idx62_arm_r_joint2" kp="10000" kv="400" />
+        <position name="position_idx63_arm_r_joint3" joint="idx63_arm_r_joint3" kp="10000" kv="160" />
+        <position name="position_idx64_arm_r_joint4" joint="idx64_arm_r_joint4" kp="10000" kv="160" />
+        <position name="position_idx65_arm_r_joint5" joint="idx65_arm_r_joint5" kp="10000" kv="120" />
+        <position name="position_idx66_arm_r_joint6" joint="idx66_arm_r_joint6" kp="10000" kv="120" />
+        <position name="position_idx67_arm_r_joint7" joint="idx67_arm_r_joint7" kp="10000" kv="120" />
+
+        <!-- torque control actuator -->
+        <motor name="motor_idx21_arm_l_joint1" joint="idx21_arm_l_joint1" ctrlrange="-1200 1200" />
+        <motor name="motor_idx22_arm_l_joint2" joint="idx22_arm_l_joint2" ctrlrange="-1200 1200" />
+        <motor name="motor_idx23_arm_l_joint3" joint="idx23_arm_l_joint3" ctrlrange="-1200 1200" />
+        <motor name="motor_idx24_arm_l_joint4" joint="idx24_arm_l_joint4" ctrlrange="-1200 1200" />
+        <motor name="motor_idx25_arm_l_joint5" joint="idx25_arm_l_joint5" ctrlrange="-1200 1200" />
+        <motor name="motor_idx26_arm_l_joint6" joint="idx26_arm_l_joint6" ctrlrange="-1200 1200" />
+        <motor name="motor_idx27_arm_l_joint7" joint="idx27_arm_l_joint7" ctrlrange="-1200 1200" />
+        <motor name="motor_idx61_arm_r_joint1" joint="idx61_arm_r_joint1" ctrlrange="-1200 1200" />
+        <motor name="motor_idx62_arm_r_joint2" joint="idx62_arm_r_joint2" ctrlrange="-1200 1200" />
+        <motor name="motor_idx63_arm_r_joint3" joint="idx63_arm_r_joint3" ctrlrange="-1200 1200" />
+        <motor name="motor_idx64_arm_r_joint4" joint="idx64_arm_r_joint4" ctrlrange="-1200 1200" />
+        <motor name="motor_idx65_arm_r_joint5" joint="idx65_arm_r_joint5" ctrlrange="-1200 1200" />
+        <motor name="motor_idx66_arm_r_joint6" joint="idx66_arm_r_joint6" ctrlrange="-1200 1200" />
+        <motor name="motor_idx67_arm_r_joint7" joint="idx67_arm_r_joint7" ctrlrange="-1200 1200" />
+    </actuator>
+    <sensor>
+        <!-- joint position -->
+        <jointpos name="jointpos_idx21_arm_l_joint1" joint="idx21_arm_l_joint1" noise="0.0" />
+        <jointpos name="jointpos_idx22_arm_l_joint2" joint="idx22_arm_l_joint2" noise="0.0" />
+        <jointpos name="jointpos_idx23_arm_l_joint3" joint="idx23_arm_l_joint3" noise="0.0" />
+        <jointpos name="jointpos_idx24_arm_l_joint4" joint="idx24_arm_l_joint4" noise="0.0" />
+        <jointpos name="jointpos_idx25_arm_l_joint5" joint="idx25_arm_l_joint5" noise="0.0" />
+        <jointpos name="jointpos_idx26_arm_l_joint6" joint="idx26_arm_l_joint6" noise="0.0" />
+        <jointpos name="jointpos_idx27_arm_l_joint7" joint="idx27_arm_l_joint7" noise="0.0" />
+        <jointpos name="jointpos_idx61_arm_r_joint1" joint="idx61_arm_r_joint1" noise="0.0" />
+        <jointpos name="jointpos_idx62_arm_r_joint2" joint="idx62_arm_r_joint2" noise="0.0" />
+        <jointpos name="jointpos_idx63_arm_r_joint3" joint="idx63_arm_r_joint3" noise="0.0" />
+        <jointpos name="jointpos_idx64_arm_r_joint4" joint="idx64_arm_r_joint4" noise="0.0" />
+        <jointpos name="jointpos_idx65_arm_r_joint5" joint="idx65_arm_r_joint5" noise="0.0" />
+        <jointpos name="jointpos_idx66_arm_r_joint6" joint="idx66_arm_r_joint6" noise="0.0" />
+        <jointpos name="jointpos_idx67_arm_r_joint7" joint="idx67_arm_r_joint7" noise="0.0" />
+        <!-- joint velocity -->
+        <jointvel name="jointvel_idx21_arm_l_joint1" joint="idx21_arm_l_joint1" noise="0.0" />
+        <jointvel name="jointvel_idx22_arm_l_joint2" joint="idx22_arm_l_joint2" noise="0.0" />
+        <jointvel name="jointvel_idx23_arm_l_joint3" joint="idx23_arm_l_joint3" noise="0.0" />
+        <jointvel name="jointvel_idx24_arm_l_joint4" joint="idx24_arm_l_joint4" noise="0.0" />
+        <jointvel name="jointvel_idx25_arm_l_joint5" joint="idx25_arm_l_joint5" noise="0.0" />
+        <jointvel name="jointvel_idx26_arm_l_joint6" joint="idx26_arm_l_joint6" noise="0.0" />
+        <jointvel name="jointvel_idx27_arm_l_joint7" joint="idx27_arm_l_joint7" noise="0.0" />
+        <jointvel name="jointvel_idx61_arm_r_joint1" joint="idx61_arm_r_joint1" noise="0.0" />
+        <jointvel name="jointvel_idx62_arm_r_joint2" joint="idx62_arm_r_joint2" noise="0.0" />
+        <jointvel name="jointvel_idx63_arm_r_joint3" joint="idx63_arm_r_joint3" noise="0.0" />
+        <jointvel name="jointvel_idx64_arm_r_joint4" joint="idx64_arm_r_joint4" noise="0.0" />
+        <jointvel name="jointvel_idx65_arm_r_joint5" joint="idx65_arm_r_joint5" noise="0.0" />
+        <jointvel name="jointvel_idx66_arm_r_joint6" joint="idx66_arm_r_joint6" noise="0.0" />
+        <jointvel name="jointvel_idx67_arm_r_joint7" joint="idx67_arm_r_joint7" noise="0.0" />
+        <!-- joint torque -->
+        <jointactuatorfrc name="torque_idx21_arm_l_joint1" joint="idx21_arm_l_joint1" noise="0.0" />
+        <jointactuatorfrc name="torque_idx22_arm_l_joint2" joint="idx22_arm_l_joint2" noise="0.0" />
+        <jointactuatorfrc name="torque_idx23_arm_l_joint3" joint="idx23_arm_l_joint3" noise="0.0" />
+        <jointactuatorfrc name="torque_idx24_arm_l_joint4" joint="idx24_arm_l_joint4" noise="0.0" />
+        <jointactuatorfrc name="torque_idx25_arm_l_joint5" joint="idx25_arm_l_joint5" noise="0.0" />
+        <jointactuatorfrc name="torque_idx26_arm_l_joint6" joint="idx26_arm_l_joint6" noise="0.0" />
+        <jointactuatorfrc name="torque_idx27_arm_l_joint7" joint="idx27_arm_l_joint7" noise="0.0" />
+        <jointactuatorfrc name="torque_idx61_arm_r_joint1" joint="idx61_arm_r_joint1" noise="0.0" />
+        <jointactuatorfrc name="torque_idx62_arm_r_joint2" joint="idx62_arm_r_joint2" noise="0.0" />
+        <jointactuatorfrc name="torque_idx63_arm_r_joint3" joint="idx63_arm_r_joint3" noise="0.0" />
+        <jointactuatorfrc name="torque_idx64_arm_r_joint4" joint="idx64_arm_r_joint4" noise="0.0" />
+        <jointactuatorfrc name="torque_idx65_arm_r_joint5" joint="idx65_arm_r_joint5" noise="0.0" />
+        <jointactuatorfrc name="torque_idx66_arm_r_joint6" joint="idx66_arm_r_joint6" noise="0.0" />
+        <jointactuatorfrc name="torque_idx67_arm_r_joint7" joint="idx67_arm_r_joint7" noise="0.0" />
+    </sensor>
+</mujoco>

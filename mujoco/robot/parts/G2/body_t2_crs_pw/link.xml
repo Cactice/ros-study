@@ -1,0 +1,162 @@
+<mujoco model="body_link">
+    <!-- ========================================
+         Body Link Chain Structure
+         ======================================== -->
+
+    <!-- Main body link chain starting from body_link1 -->
+    <body name="body_link1" pos="0.102 0 0.144">
+        <!-- Inertial properties -->
+        <inertial
+            pos="-0.00489401 0.000193107 0.175562"
+            quat="0.951529 -0.00167118 0.000568439 0.307555"
+            mass="20.7874"
+            diaginertia="0.261468 0.260198 0.059575"/>
+        <!-- Joint definition -->
+        <joint
+            name="idx01_body_joint1"
+            pos="0 0 0"
+            axis="0 1 0"
+            range="-1.06 0"/>
+        <!-- Geometry -->
+        <geom type="mesh" mesh="body_link1" rgba="0.752941 0.752941 0.752941 1"/>
+        <!-- ========================================
+             Body Link 2
+             ======================================== -->
+        <body name="body_link2" pos="0 0 0.36">
+            <!-- Inertial properties -->
+            <inertial
+                pos="0.00254034 -0.043702 0.185408"
+                quat="0.706493 -0.00743404 -0.00727108 0.707643"
+                mass="12.4098"
+                diaginertia="0.208365 0.195289 0.0220707"/>
+            <!-- Joint definition -->
+            <joint
+                name="idx02_body_joint2"
+                pos="0 0 0"
+                axis="0 1 0"
+                range="0 2.65"/>
+            <!-- Geometry -->
+            <geom type="mesh" mesh="body_link2" rgba="1 1 1 1"/>
+            <!-- ========================================
+                 Body Link 3
+                 ======================================== -->
+            <body name="body_link3" pos="0 0 0.38">
+                <!-- Inertial properties -->
+                <inertial
+                    pos="-0.000429684 -0.00641624 4.19234e-05"
+                    quat="0.996964 0.0579402 -0.00124734 -0.0519932"
+                    mass="7.34766"
+                    diaginertia="0.0253773 0.0245502 0.0236107"/>
+                <!-- Joint definition -->
+                <joint
+                    name="idx03_body_joint3"
+                    pos="0 0 0"
+                    axis="0 1 0"
+                    range="-1.91 1.57"/>
+                <!-- Geometry -->
+                <geom type="mesh" mesh="body_link3" rgba="0.752941 0.752941 0.752941 1"/>
+                <!-- ========================================
+                     Body Link 4
+                     ======================================== -->
+                <body name="body_link4">
+                    <!-- Inertial properties -->
+                    <inertial
+                        pos="-0.0714498 -6.54615e-05 0.0300405"
+                        quat="0.382564 0.598079 0.590375 0.383932"
+                        mass="6.23061"
+                        diaginertia="0.0315401 0.0286428 0.0240827"/>
+                    <!-- Joint definition -->
+                    <joint
+                        name="idx04_body_joint4"
+                        pos="0 0 0"
+                        axis="1 0 0"
+                        range="-0.43 0.43"/>
+                    <!-- Geometry -->
+                    <geom type="mesh" mesh="body_link4" rgba="1 1 1 1"/>
+                    <!-- ========================================
+                         Body Link 5
+                         ======================================== -->
+                    <body name="body_link5" pos="0 0 0.149">
+                        <!-- Inertial properties -->
+                        <inertial
+                            pos="-0.0244424 0.000202655 0.136945"
+                            quat="0.999987 -0.00278586 0.00415305 -0.000622614"
+                            mass="7.90088"
+                            diaginertia="0.0775108 0.0555698 0.0426905"/>
+                        <!-- Joint definition -->
+                        <joint
+                            name="idx05_body_joint5"
+                            pos="0 0 0"
+                            axis="0 0 1"
+                            range="-3.05 3.05"/>
+                        <!-- Geometry -->
+                        <geom type="mesh" 
+                              mesh="body_link5" 
+                              rgba="0.752941 0.752941 0.752941 1"/>
+                        <!-- ========================================
+                             Include Arm Links
+                             ======================================== -->
+                        <include file="../arm_crs_pw/link.xml" />
+                        <!-- ========================================
+                             Head Link Chain
+                             ======================================== -->
+                        <body name="head_link1" pos="-0.013 0 0.496">
+                            <!-- Inertial properties -->
+                            <inertial
+                                pos="0.00424601 -1.36432e-07 -0.0288855"
+                                quat="0.704159 -0.0648528 -0.0648618 0.704093"
+                                mass="0.245638"
+                                diaginertia="0.000306992 0.000302836 8.22483e-05"/>
+                            <!-- Joint definition -->
+                            <joint
+                                name="idx11_head_joint1"
+                                pos="0 0 0"
+                                axis="0 0 1"
+                                range="-1.57 1.57"/>
+                            <!-- Geometry -->
+                            <geom type="mesh" mesh="head_link1" rgba="0.752941 0.752941 0.752941 1"/>
+                            <!-- ========================================
+                                 Head Link 2
+                                 ======================================== -->
+                            <body name="head_link2" pos="0.03335 0 0.07">
+                                <!-- Inertial properties -->
+                                <inertial
+                                    pos="-0.0363591 -0.000333631 -0.00246318"
+                                    quat="0.704707 0.705403 0.0594704 -0.0475286"
+                                    mass="0.0944987"
+                                    diaginertia="5.66986e-05 5.01493e-05 3.80384e-05"/>
+                                <!-- Joint definition -->
+                                <joint
+                                    name="idx12_head_joint2"
+                                    pos="0 0 0"
+                                    axis="1 0 0"
+                                    range="-0.349 0.349"/>
+                                <!-- Geometry -->
+                                <geom type="mesh" mesh="head_link2" rgba="0.752941 0.752941 0.752941 1"/>
+                                <!-- ========================================
+                                     Head Link 3
+                                     ======================================== -->
+                                <body name="head_link3" pos="-0.03035 0 0">
+                                    <!-- Inertial properties -->
+                                    <inertial
+                                        pos="-0.00327293 2.14734e-05 0.0163618"
+                                        quat="-0.000248838 0.699252 2.07117e-06 0.714875"
+                                        mass="17.8197"
+                                        diaginertia="0.0712727 0.0558097 0.0456037"/>
+                                    <!-- Joint definition -->
+                                    <joint
+                                        name="idx13_head_joint3"
+                                        pos="0 0 0"
+                                        axis="0 1 0"
+                                        range="-0.523 0.523"/>
+                                    <!-- Geometry -->
+                                    <geom type="mesh" mesh="head_link3" rgba="0.752941 0.752941 0.752941 1"/>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </body>
+</mujoco>

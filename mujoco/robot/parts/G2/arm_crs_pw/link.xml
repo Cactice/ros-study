@@ -1,0 +1,428 @@
+<mujoco model="arm_link">
+    <!-- ========================================
+         Left Arm Link Chain
+         ======================================== -->
+    <body name="arm_l_link1" pos="0 0.069 0.3085" quat="0.707107 -0.707107 0 0">
+        <!-- Inertial properties from model.xml -->
+        <inertial
+            pos="1.875e-05 0.006003 0.1438"
+            quat="0.708546 0.0371413 -0.0376501 0.70368"
+            mass="2.0926"
+            diaginertia="0.00559611 0.00515641 0.00193958"/>
+
+        <!-- Joint definition with actuatorfrcrange -->
+        <joint
+            name="idx21_arm_l_joint1"
+            pos="0 0 0"
+            axis="0 0 1"
+            range="-3.1067 3.1067"
+            actuatorfrcrange="-108 108"/>
+
+        <!-- Geometry -->
+        <geom
+            type="mesh"
+            contype="0"
+            conaffinity="0"
+            group="1"
+            density="0"
+            rgba="1 0 1 1"
+            mesh="Link1_P6"/>
+
+        <!-- ========================================
+             Left Arm Link 2
+             ======================================== -->
+        <body name="arm_l_link2" pos="0 0 0.1745" quat="0.707105 0.707108 0 0">
+            <!-- Inertial properties from model.xml -->
+            <inertial
+                pos="-7.03e-06 0.05542 0.010995"
+                quat="0.641173 0.767392 -0.00214053 0.00133687"
+                mass="1.9432"
+                diaginertia="0.0103546 0.00975036 0.00294632"/>
+
+            <!-- Joint definition with actuatorfrcrange -->
+            <joint
+                name="idx22_arm_l_joint2"
+                pos="0 0 0"
+                axis="0 0 1"
+                range="-2.0944 2.0944"
+                actuatorfrcrange="-108 108"/>
+
+            <!-- Geometry -->
+            <geom
+                type="mesh"
+                contype="0"
+                conaffinity="0"
+                group="1"
+                density="0"
+                rgba="1 0 0 1"
+                mesh="Link2_P6"/>
+
+            <!-- ========================================
+                 Left Arm Link 3
+                 ======================================== -->
+            <body name="arm_l_link3" quat="0.707105 -0.707108 0 0">
+                <!-- Inertial properties from model.xml -->
+                <inertial
+                    pos="0.0087411 0.0019043 0.23487"
+                    quat="0.773926 -0.0373044 -0.0709906 0.628178"
+                    mass="1.6913"
+                    diaginertia="0.00691278 0.00661449 0.00151279"/>
+
+                <!-- Joint definition with actuatorfrcrange -->
+                <joint
+                    name="idx23_arm_l_joint3"
+                    pos="0 0 0"
+                    axis="0 0 1"
+                    range="-3.1067 3.1067"
+                    actuatorfrcrange="-66 66"/>
+
+                <!-- Geometry -->
+                <geom
+                    type="mesh"
+                    contype="0"
+                    conaffinity="0"
+                    group="1"
+                    density="0"
+                    rgba="1 1 0 1"
+                    mesh="Link3_P6"/>
+
+                <!-- ========================================
+                     Left Arm Link 4
+                     ======================================== -->
+                <body name="arm_l_link4" pos="0.018 0 0.287" quat="0.707105 0.707108 0 0">
+                    <!-- Inertial properties from model.xml -->
+                    <inertial
+                        pos="-0.0086935 0.045984 0.011135"
+                        quat="0.621456 0.737295 -0.246853 0.0961863"
+                        mass="1.5332"
+                        diaginertia="0.0055184 0.00490878 0.00183112"/>
+
+                    <!-- Joint definition with actuatorfrcrange -->
+                    <joint
+                        name="idx24_arm_l_joint4"
+                        pos="0 0 0"
+                        axis="0 0 1"
+                        range="-2.5307 1.0472"
+                        actuatorfrcrange="-66 66"/>
+
+                    <!-- Geometry -->
+                    <geom
+                        type="mesh"
+                        contype="0"
+                        conaffinity="0"
+                        group="1"
+                        density="0"
+                        rgba="1 0 1 1"
+                        mesh="Link4_P6"/>
+
+                    <!-- ========================================
+                         Left Arm Link 5
+                         ======================================== -->
+                    <body name="arm_l_link5" pos="-0.018 0 0" quat="0.707105 -0.707108 0 0">
+                        <!-- Inertial properties from model.xml -->
+                        <inertial
+                            pos="-0.00036467 0.0001479 0.19902"
+                            quat="0.999106 0.00345732 0.00652516 -0.0416219"
+                            mass="2.0095"
+                            diaginertia="0.00569947 0.0052757 0.00211221"/>
+
+                        <!-- Joint definition with actuatorfrcrange -->
+                        <joint
+                            name="idx25_arm_l_joint5"
+                            pos="0 0 0"
+                            axis="0 0 1"
+                            range="-3.1067 3.1067"
+                            actuatorfrcrange="-36 36"/>
+
+                        <!-- Geometry -->
+                        <geom
+                            type="mesh"
+                            contype="0"
+                            conaffinity="0"
+                            group="1"
+                            density="0"
+                            rgba="1 0 0 1"
+                            mesh="Link5_P6"/>
+
+                        <!-- ========================================
+                             Left Arm Link 6
+                             ======================================== -->
+                        <body name="arm_l_link6" pos="0 0 0.314" quat="0.707105 0.707108 0 0">
+                            <!-- Inertial properties from model.xml -->
+                            <inertial
+                                pos="-0.004911 0.00027206 -8.14e-05"
+                                quat="0.999881 0.0107884 -0.0079053 -0.00774961"
+                                mass="0.67002"
+                                diaginertia="0.000489372 0.000400032 0.000369166"/>
+
+                            <!-- Joint definition with actuatorfrcrange -->
+                            <joint
+                                name="idx26_arm_l_joint6"
+                                pos="0 0 0"
+                                axis="0 0 1"
+                                range="-1.0472 1.0472"
+                                actuatorfrcrange="-36 36"/>
+
+                            <!-- Geometry -->
+                            <geom
+                                type="mesh"
+                                contype="0"
+                                conaffinity="0"
+                                group="1"
+                                density="0"
+                                rgba="1 1 0 1"
+                                mesh="Link6_P6"/>
+
+                            <!-- ========================================
+                                 Left Arm Link 7
+                                 ======================================== -->
+                            <body name="arm_l_link7" quat="0.499998 0.5 0.500002 0.5">
+                                <!-- Inertial properties from model.xml -->
+                                <inertial
+                                    pos="0.0451337 4.672e-05 0.00607482"
+                                    quat="0.593322 0.386679 0.388741 0.589347"
+                                    mass="0.31657"
+                                    diaginertia="0.000673414 0.000570067 0.000333619"/>
+
+                                <!-- Joint definition with actuatorfrcrange -->
+                                <joint
+                                    name="idx27_arm_l_joint7"
+                                    pos="0 0 0"
+                                    axis="0 0 1"
+                                    range="-1.5708 1.5708"
+                                    actuatorfrcrange="-36 36"/>
+
+                                <!-- Geometry -->
+                                <geom
+                                    type="mesh"
+                                    contype="0"
+                                    conaffinity="0"
+                                    group="1"
+                                    density="0"
+                                    rgba="1 0 1 1"
+                                    mesh="Link7_P6"/>
+                                
+                                <!-- include left hand o12 -->
+                                <include file="../hand_pw/gripper_left.xml" />
+
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </body>
+
+    <!-- ========================================
+         Right Arm Link Chain
+         ======================================== -->
+    <body name="arm_r_link1" pos="0 -0.069 0.3085" quat="0.707107 0.707107 0 0">
+        <!-- Inertial properties from model.xml -->
+        <inertial
+            pos="1.875e-05 0.006003 0.1438"
+            quat="0.708546 0.0371413 -0.0376501 0.70368"
+            mass="2.0926"
+            diaginertia="0.00559611 0.00515641 0.00193958"/>
+
+        <!-- Joint definition with actuatorfrcrange -->
+        <joint
+            name="idx61_arm_r_joint1"
+            pos="0 0 0"
+            axis="0 0 1"
+            range="-3.1067 3.1067"
+            actuatorfrcrange="-108 108"/>
+
+        <!-- Geometry -->
+        <geom
+            type="mesh"
+            contype="0"
+            conaffinity="0"
+            group="1"
+            density="0"
+            rgba="1 0 1 1"
+            mesh="Link1_P6"/>
+
+        <!-- ========================================
+             Right Arm Link 2
+             ======================================== -->
+        <body name="arm_r_link2" pos="0 0 0.1745" quat="0.707107 0.707107 0 0">
+            <!-- Inertial properties from model.xml -->
+            <inertial
+                pos="-7.03e-06 0.05542 0.010995"
+                quat="0.641173 0.767392 -0.00214053 0.00133687"
+                mass="1.9432"
+                diaginertia="0.0103546 0.00975036 0.00294632"/>
+
+            <!-- Joint definition with actuatorfrcrange -->
+            <joint
+                name="idx62_arm_r_joint2"
+                pos="0 0 0"
+                axis="0 0 1"
+                range="-2.0944 2.0944"
+                actuatorfrcrange="-108 108"/>
+
+            <!-- Geometry -->
+            <geom
+                type="mesh"
+                contype="0"
+                conaffinity="0"
+                group="1"
+                density="0"
+                rgba="1 0 0 1"
+                mesh="Link2_P6"/>
+
+            <!-- ========================================
+                 Right Arm Link 3
+                 ======================================== -->
+            <body name="arm_r_link3" quat="0.707107 -0.707107 0 0">
+                <!-- Inertial properties from model.xml -->
+                <inertial
+                    pos="0.0087411 0.0019043 0.23487"
+                    quat="0.773926 -0.0373044 -0.0709906 0.628178"
+                    mass="1.6913"
+                    diaginertia="0.00691278 0.00661449 0.00151279"/>
+
+                <!-- Joint definition with actuatorfrcrange -->
+                <joint
+                    name="idx63_arm_r_joint3"
+                    pos="0 0 0"
+                    axis="0 0 1"
+                    range="-3.1067 3.1067"
+                    actuatorfrcrange="-66 66"/>
+
+                <!-- Geometry -->
+                <geom
+                    type="mesh"
+                    contype="0"
+                    conaffinity="0"
+                    group="1"
+                    density="0"
+                    rgba="1 1 0 1"
+                    mesh="Link3_P6"/>
+
+                <!-- ========================================
+                     Right Arm Link 4
+                     ======================================== -->
+                <body name="arm_r_link4" pos="0.018 0 0.287" quat="0.707107 0.707107 0 0">
+                    <!-- Inertial properties from model.xml -->
+                    <inertial
+                        pos="-0.0086935 0.045984 0.011135"
+                        quat="0.621456 0.737295 -0.246853 0.0961863"
+                        mass="1.5332"
+                        diaginertia="0.0055184 0.00490878 0.00183112"/>
+
+                    <!-- Joint definition with actuatorfrcrange -->
+                    <joint
+                        name="idx64_arm_r_joint4"
+                        pos="0 0 0"
+                        axis="0 0 1"
+                        range="-2.5307 1.0472"
+                        actuatorfrcrange="-66 66"/>
+
+                    <!-- Geometry -->
+                    <geom
+                        type="mesh"
+                        contype="0"
+                        conaffinity="0"
+                        group="1"
+                        density="0"
+                        rgba="1 0 1 1"
+                        mesh="Link4_P6"/>
+
+                    <!-- ========================================
+                         Right Arm Link 5
+                         ======================================== -->
+                    <body name="arm_r_link5" pos="-0.018 0 0" quat="0.707107 -0.707107 0 0">
+                        <!-- Inertial properties from model.xml -->
+                        <inertial
+                            pos="0.00036663 -0.00041429 0.198891"
+                            quat="0.999078 -0.00435039 -0.00655822 -0.0422006"
+                            mass="1.9854"
+                            diaginertia="0.00567885 0.00526075 0.00209418"/>
+
+                        <!-- Joint definition with actuatorfrcrange -->
+                        <joint
+                            name="idx65_arm_r_joint5"
+                            pos="0 0 0"
+                            axis="0 0 1"
+                            range="-3.1067 3.1067"
+                            actuatorfrcrange="-36 36"/>
+
+                        <!-- Geometry -->
+                        <geom
+                            type="mesh"
+                            contype="0"
+                            conaffinity="0"
+                            group="1"
+                            density="0"
+                            rgba="1 0 0 1"
+                            mesh="Link5_P6"/>
+
+                        <!-- ========================================
+                             Right Arm Link 6
+                             ======================================== -->
+                        <body name="arm_r_link6" pos="0 0 0.314" quat="0.707107 0.707107 0 0">
+                            <!-- Inertial properties from model.xml -->
+                            <inertial
+                                pos="-0.00458177 -0.00027029 9.098e-05"
+                                quat="0.99986 0.0119778 0.00849363 0.00798016"
+                                mass="0.645948"
+                                diaginertia="0.000477145 0.000391895 0.000361099"/>
+
+                            <!-- Joint definition with actuatorfrcrange -->
+                            <joint
+                                name="idx66_arm_r_joint6"
+                                pos="0 0 0"
+                                axis="0 0 1"
+                                range="-1.0472 1.0472"
+                                actuatorfrcrange="-36 36"/>
+
+                            <!-- Geometry -->
+                            <geom
+                                type="mesh"
+                                contype="0"
+                                conaffinity="0"
+                                group="1"
+                                density="0"
+                                rgba="1 1 0 1"
+                                mesh="Link6_P6"/>
+
+                            <!-- ========================================
+                                 Right Arm Link 7
+                                 ======================================== -->
+                            <body name="arm_r_link7" quat="0.5 0.5 0.5 0.5">
+                                <!-- Inertial properties from model.xml -->
+                                <inertial
+                                    pos="0.0451337 4.672e-05 0.00607482"
+                                    quat="0.593322 0.386679 0.388741 0.589347"
+                                    mass="0.31658"
+                                    diaginertia="0.000673414 0.000570067 0.000333619"/>
+
+                                <!-- Joint definition with actuatorfrcrange -->
+                                <joint
+                                    name="idx67_arm_r_joint7"
+                                    pos="0 0 0"
+                                    axis="0 0 1"
+                                    range="-1.5708 1.5708"
+                                    actuatorfrcrange="-36 36"/>
+
+                                <!-- Geometry -->
+                                <geom
+                                    type="mesh"
+                                    contype="0"
+                                    conaffinity="0"
+                                    group="1"
+                                    density="0"
+                                    rgba="1 0 1 1"
+                                    mesh="Link7_P6"/>
+                                
+                                <!-- include right hand o12 -->
+                                <include file="../hand_pw/gripper_right.xml" />
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </body>
+</mujoco>

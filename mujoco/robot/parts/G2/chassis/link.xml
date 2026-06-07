@@ -1,0 +1,63 @@
+<mujoco model="chassis_link">
+    <body name="chassis_lwheel_front_link1" pos="0.23 0.218 0.16675">
+        <inertial pos="4.8347e-05 -0.021386 -0.055149" quat="0.681263 -0.208432 0.206514 0.670663"
+            mass="0.59301" diaginertia="0.00114775 0.001129 0.000294904" />
+        <joint name="idx111_chassis_lwheel_front_joint1" pos="0 0 0" axis="0 0 1" range="-2.97 2.97" />
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0"
+            rgba="0.86667 0.86667 0.8902 1" mesh="chassis_lwheel_front_link1" />
+        <body name="chassis_lwheel_front_link2" pos="0 -5e-05 -0.13675">
+            <inertial pos="-2.3442e-06 -0.0013086 1.0892e-05"
+                quat="0.487628 0.512096 0.512035 0.487644" mass="3.6283"
+                diaginertia="0.010779 0.0058842 0.0058835" />
+            <joint name="idx112_chassis_lwheel_front_joint2" pos="0 0 0" axis="0 1 0" />
+            <geom type="mesh" group="1" density="0" rgba="1 1 1 1"
+                mesh="chassis_lwheel_front_link2"
+                class="collision" />
+        </body>
+    </body>
+    <body name="chassis_rwheel_front_link1" pos="0.23 -0.218 0.16675">
+        <inertial pos="-4.8347e-05 0.021386 -0.055149" quat="0.681263 0.208432 -0.206514 0.670663"
+            mass="0.59301" diaginertia="0.00114775 0.001129 0.000294904" />
+        <joint name="idx131_chassis_rwheel_front_joint1" pos="0 0 0" axis="0 0 1" range="-2.97 2.97" />
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0"
+            rgba="0.86667 0.86667 0.8902 1" mesh="chassis_rwheel_front_link1" />
+        <body name="chassis_rwheel_front_link2" pos="0 5e-05 -0.13675">
+            <inertial pos="2.3442e-06 0.0013086 1.0892e-05"
+                quat="0.512096 0.487628 0.487644 0.512035" mass="3.6283"
+                diaginertia="0.010779 0.0058842 0.0058835" />
+            <joint name="idx132_chassis_rwheel_front_joint2" pos="0 0 0" axis="0 1 0" />
+            <geom type="mesh" group="1" density="0" rgba="1 1 1 1"
+                mesh="chassis_rwheel_front_link2" class="collision" />
+        </body>
+    </body>
+    <body name="chassis_rwheel_rear_link1" pos="-0.23 -0.218 0.16675">
+        <inertial pos="-4.8347e-05 0.021386 -0.055149" quat="0.681263 0.208432 -0.206514 0.670663"
+            mass="0.59301" diaginertia="0.00114775 0.001129 0.000294904" />
+        <joint name="idx141_chassis_rwheel_rear_joint1" pos="0 0 0" axis="0 0 1" range="-2.97 2.97" />
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0"
+            rgba="0.86667 0.86667 0.8902 1" mesh="chassis_rwheel_rear_link1" />
+        <body name="chassis_rwheel_rear_link2" pos="0 5e-05 -0.13675">
+            <inertial pos="2.3442e-06 0.0013086 1.0892e-05"
+                quat="0.512096 0.487628 0.487644 0.512035" mass="3.6283"
+                diaginertia="0.010779 0.0058842 0.0058835" />
+            <joint name="idx142_chassis_rwheel_rear_joint2" pos="0 0 0" axis="0 1 0" />
+            <geom type="mesh" group="1" density="0" rgba="1 1 1 1"
+                mesh="chassis_rwheel_rear_link2" class="collision" />
+        </body>
+    </body>
+    <body name="chassis_lwheel_rear_link1" pos="-0.23 0.218 0.16675">
+        <inertial pos="4.8347e-05 -0.021386 -0.055149" quat="0.681263 -0.208432 0.206514 0.670663"
+            mass="0.59301" diaginertia="0.00114775 0.001129 0.000294904" />
+        <joint name="idx121_chassis_lwheel_rear_joint1" pos="0 0 0" axis="0 0 1" range="-2.97 2.97" />
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0"
+            rgba="0.86667 0.86667 0.8902 1" mesh="chassis_lwheel_rear_link1" />
+        <body name="chassis_lwheel_rear_link2" pos="0 -5e-05 -0.13675">
+            <inertial pos="-2.3442e-06 -0.0013086 1.0892e-05"
+                quat="0.487628 0.512096 0.512035 0.487644" mass="3.6283"
+                diaginertia="0.010779 0.0058842 0.0058835" />
+            <joint name="idx122_chassis_lwheel_rear_joint2" pos="0 0 0" axis="0 1 0" />
+            <geom type="mesh" group="1" density="0" rgba="1 1 1 1"
+                mesh="chassis_lwheel_rear_link2" class="collision" />
+        </body>
+    </body>
+</mujoco>

@@ -1,0 +1,53 @@
+<!-- actuator and sensor -->
+<mujoco model = "body_actuator_sensor">
+    <actuator>
+        <position name = "position_idx01_body_joint1"           joint = "idx01_body_joint1"   kp = "20000"  kv="6000" />
+        <position name = "position_idx02_body_joint2"           joint = "idx02_body_joint2"   kp = "20000"  kv="6000" />
+        <position name = "position_idx03_body_joint3"           joint = "idx03_body_joint3"   kp = "20000"  kv="6000" />
+        <position name = "position_idx04_body_joint4"           joint = "idx04_body_joint4"   kp = "20000"  kv="6000" />
+        <position name = "position_idx05_body_joint5"           joint = "idx05_body_joint5"   kp = "20000"  kv="6000" />
+        <position name = "position_idx11_head_joint1"           joint = "idx11_head_joint1"   kp = "1500"  kv="150" />
+        <position name = "position_idx12_head_joint2"           joint = "idx12_head_joint2"   kp = "1500"  kv="150" />
+        <position name = "position_idx13_head_joint3"           joint = "idx13_head_joint3"   kp = "1500"  kv="150" />
+
+        <motor name = "motor_idx01_body_joint1"           joint = "idx01_body_joint1"   ctrlrange="-1200 1200" />
+        <motor name = "motor_idx02_body_joint2"           joint = "idx02_body_joint2"   ctrlrange="-1200 1200" />
+        <motor name = "motor_idx03_body_joint3"           joint = "idx03_body_joint3"   ctrlrange="-1200 1200" />
+        <motor name = "motor_idx04_body_joint4"           joint = "idx04_body_joint4"   ctrlrange="-1200 1200" />
+        <motor name = "motor_idx05_body_joint5"           joint = "idx05_body_joint5"   ctrlrange="-1200 1200" />
+        <motor name = "motor_idx11_head_joint1"           joint = "idx11_head_joint1"   ctrlrange="-1200 1200" />
+        <motor name = "motor_idx12_head_joint2"           joint = "idx12_head_joint2"   ctrlrange="-1200 1200" />
+        <motor name = "motor_idx13_head_joint3"           joint = "idx13_head_joint3"   ctrlrange="-1200 1200" />
+    </actuator>
+    <sensor>
+        <framequat name="imu_quat_sensor" objtype="site" objname="imu_site"/>
+        <gyro name="imu_gyro" site="imu_site"/>
+        <accelerometer name="imu_accel" site="imu_site"/>
+        <jointpos name = "jointpos_idx01_body_joint1"        joint = "idx01_body_joint1"   noise = "0.0" />
+        <jointpos name = "jointpos_idx02_body_joint2"        joint = "idx02_body_joint2"   noise = "0.0" />
+        <jointpos name = "jointpos_idx03_body_joint3"        joint = "idx03_body_joint3"   noise = "0.0" />
+        <jointpos name = "jointpos_idx04_body_joint4"        joint = "idx04_body_joint4"   noise = "0.0" />
+        <jointpos name = "jointpos_idx05_body_joint5"        joint = "idx05_body_joint5"   noise = "0.0" />
+        <jointpos name = "jointpos_idx11_head_joint1"        joint = "idx11_head_joint1"   noise = "0.0" />
+        <jointpos name = "jointpos_idx12_head_joint2"        joint = "idx12_head_joint2"   noise = "0.0" />
+        <jointpos name = "jointpos_idx13_head_joint3"        joint = "idx13_head_joint3"   noise = "0.0" />
+
+        <jointvel name = "jointvel_idx01_body_joint1"        joint = "idx01_body_joint1"   noise = "0.0" />
+        <jointvel name = "jointvel_idx02_body_joint2"        joint = "idx02_body_joint2"   noise = "0.0" />
+        <jointvel name = "jointvel_idx03_body_joint3"        joint = "idx03_body_joint3"   noise = "0.0" />
+        <jointvel name = "jointvel_idx04_body_joint4"        joint = "idx04_body_joint4"   noise = "0.0" />
+        <jointvel name = "jointvel_idx05_body_joint5"        joint = "idx05_body_joint5"   noise = "0.0" />
+        <jointvel name = "jointvel_idx11_head_joint1"        joint = "idx11_head_joint1"   noise = "0.0" />
+        <jointvel name = "jointvel_idx12_head_joint2"        joint = "idx12_head_joint2"   noise = "0.0" />
+        <jointvel name = "jointvel_idx13_head_joint3"        joint = "idx13_head_joint3"   noise = "0.0" />
+
+        <jointactuatorfrc name = "torque_idx01_body_joint1"  joint = "idx01_body_joint1"   noise = "0.0" />
+        <jointactuatorfrc name = "torque_idx02_body_joint2"  joint = "idx02_body_joint2"   noise = "0.0" />
+        <jointactuatorfrc name = "torque_idx03_body_joint3"  joint = "idx03_body_joint3"   noise = "0.0" />
+        <jointactuatorfrc name = "torque_idx04_body_joint4"  joint = "idx04_body_joint4"   noise = "0.0" />
+        <jointactuatorfrc name = "torque_idx05_body_joint5"  joint = "idx05_body_joint5"   noise = "0.0" />
+        <jointactuatorfrc name = "torque_idx11_head_joint1"  joint = "idx11_head_joint1"   noise = "0.0" />
+        <jointactuatorfrc name = "torque_idx12_head_joint2"  joint = "idx12_head_joint2"   noise = "0.0" />
+        <jointactuatorfrc name = "torque_idx13_head_joint3"  joint = "idx13_head_joint3"   noise = "0.0" />
+    </sensor>
+</mujoco>

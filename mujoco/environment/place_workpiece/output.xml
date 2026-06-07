@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco>
+  <asset>
+    <mesh name="mesh_000" file="meshes/mesh_000.obj" />
+    <mesh name="mesh_001" file="meshes/mesh_001.obj" scale="-0.108976 -0.005925 -0.005974" />
+    <mesh name="mesh_002" file="meshes/mesh_002.obj" scale="0.108976 0.009427 0.074258" />
+    <mesh name="mesh_003" file="meshes/mesh_003.obj" scale="0.207993 0.010474 0.517050" />
+    <mesh name="mesh_004" file="meshes/mesh_004.obj" scale="0.005000 0.005000 0.005000" />
+    <mesh name="mesh_005" file="meshes/mesh_005.obj" scale="0.005000 0.005000 0.005000" />
+    <mesh name="mesh_006" file="meshes/mesh_006.obj" scale="0.005000 0.005000 0.005000" />
+    <mesh name="mesh_007" file="meshes/mesh_007.obj" scale="0.005000 0.005000 0.005000" />
+    <mesh name="mesh_008" file="meshes/mesh_008.obj" scale="0.005000 0.005000 0.005000" />
+    <mesh name="mesh_009" file="meshes/mesh_009.obj" scale="0.005000 0.005000 0.005000" />
+    </asset>
+  <worldbody>
+    <light pos="0 0 10" dir="0 0 -1" directional="true" />
+    <body name="/World" pos="0.000000 0.000000 0.000000" quat="1.000000 0.000000 0.000000 0.000000">
+      <body name="/World/workspace01" pos="0.604900 -0.009500 0.000000" quat="0.000000 0.000000 0.000000 1.000000">
+        <geom mesh="mesh_000" type="mesh" margin="0.001" gap="0.001" contype="0" conaffinity="0" name="/World/workspace01/workspace01/workspace01" />
+        <geom mesh="mesh_001" type="mesh" margin="0.001" gap="0.001" class="collision" name="/World/workspace01/workspace01/collision/Cube" pos="-0.024622 -0.051508 0.936980" quat="0.000000 -0.000000 0.707107 -0.707107" />
+        <geom mesh="mesh_002" type="mesh" margin="0.001" gap="0.001" class="collision" name="/World/workspace01/workspace01/collision/Cube01" pos="-0.024622 -0.011412 0.938323" quat="0.707107 0.707107 0.000000 0.000000" />
+        <geom mesh="mesh_003" type="mesh" margin="0.001" gap="0.001" class="collision" name="/World/workspace01/workspace01/collision/Cube02" pos="0.001219 0.001281 0.794141" quat="0.707107 0.707107 0.000000 0.000000" />
+        <geom mesh="mesh_004" type="mesh" margin="0.001" gap="0.001" class="collision" name="/World/workspace01/workspace01/collision/Sphere_06" pos="0.011023 0.011279 0.942840" quat="-0.000000 0.000000 0.000000 1.000000" />
+        <geom mesh="mesh_005" type="mesh" margin="0.001" gap="0.001" class="collision" name="/World/workspace01/workspace01/collision/Sphere_07" pos="0.006027 -0.038489 0.946239" quat="-0.000000 0.000000 0.000000 1.000000" />
+        <geom mesh="mesh_006" type="mesh" margin="0.001" gap="0.001" class="collision" name="/World/workspace01/workspace01/collision/Sphere_08" pos="0.006027 -0.038489 0.942843" quat="-0.000000 0.000000 0.000000 1.000000" />
+        <geom mesh="mesh_007" type="mesh" margin="0.001" gap="0.001" class="collision" name="/World/workspace01/workspace01/collision/Sphere_09" pos="-0.065106 -0.020592 0.946240" quat="-0.000000 0.000000 0.000000 1.000000" />
+        <geom mesh="mesh_008" type="mesh" margin="0.001" gap="0.001" class="collision" name="/World/workspace01/workspace01/collision/Sphere_10" pos="0.011023 0.011279 0.946240" quat="-0.000000 0.000000 0.000000 1.000000" />
+        <geom mesh="mesh_009" type="mesh" margin="0.001" gap="0.001" class="collision" name="/World/workspace01/workspace01/collision/Sphere_11" pos="-0.065106 -0.020592 0.942840" quat="-0.000000 0.000000 0.000000 1.000000" />
+        </body>
+      </body>
+    </worldbody>
+  </mujoco>
