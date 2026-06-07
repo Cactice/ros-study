@@ -3,10 +3,10 @@ name = "agibot-g2-mujoco"
 version = "0.1.0"
 description = "AgiBot G2 MuJoCo simulation viewer"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.10"
 dependencies = [
-    "jax>=0.10.1",
-    "jax-metal>=0.1.1",
+    "jax",
+    "jax-metal",
     "mujoco>=3.9.0",
 ]
 
@@ -17,7 +17,7 @@ dev = [
 
 [tool.ruff]
 line-length = 100
-target-version = "py312"
+target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP"]
