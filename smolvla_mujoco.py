@@ -1,50 +1,62 @@
 """
 SmolVLA (450M) + MuJoCo G2 integration.
 
+Run with:  uv run smolvla
+
 smolvla_base was trained on SO-100 (6-DOF). Action output is 6-dim, so we drive
 G2's right arm (6 of 7 joints). Left arm holds the keyframe pose.
 
 Edit TASK to change the instruction. No separate embedding step needed.
 """
+
 import os
 import pathlib
-from collections import deque
+import subprocess
+import sys
 
-import mujoco
 import mujoco.viewer
 import numpy as np
 import torch
 from PIL import Image
 
-MUJOCO_DIR = pathlib.Path(__file__).parent / "mujoco"
+import mujoco
+
+_HERE = pathlib.Path(__file__).parent
+_MJPYTHON = str(_HERE / ".venv/bin/mjpython")
+
+MUJOCO_DIR = _HERE / "mujoco"
 SCENE = "robot_only.xml"
 PRETRAINED = "lerobot/smolvla_base"
 
-TASK = "pick up the workpiece and place it on the table"
+TASK = "dance randomly"
 
 # G2 qpos addresses (verified from mj_resetDataKeyframe inspection)
-BODY_QPOS  = list(range(7, 12))
+BODY_QPOS = list(range(7, 12))
 ARM_L_QPOS = list(range(12, 19))
 ARM_R_QPOS = list(range(21, 28))
 GRIPPER_L_QPOS = [20]
 GRIPPER_R_QPOS = [29]
 
 # data.ctrl indices for position actuators
-BODY_CTRL    = list(range(0, 5))
-ARM_L_CTRL   = list(range(24, 31))
-ARM_R_CTRL   = list(range(31, 38))
+BODY_CTRL = list(range(0, 5))
+ARM_L_CTRL = list(range(24, 31))
+ARM_R_CTRL = list(range(31, 38))
 GRIPPER_L_CTRL = [52]
 GRIPPER_R_CTRL = [53]
 
 # smolvla_base: action_dim=6 → drive right arm joints 1-6 (skip joint 7)
-ACTION_CTRL = ARM_R_CTRL[:6]   # ctrl[31:37]
-STATE_QPOS  = ARM_R_QPOS[:6]   # qpos[21:27]
+ACTION_CTRL = ARM_R_CTRL[:6]  # ctrl[31:37]
+STATE_QPOS = ARM_R_QPOS[:6]  # qpos[21:27]
 
 IMG_W, IMG_H = 256, 256
 
 
+def launch() -> None:
+    """Entry point for `uv run smolvla` — spawns venv mjpython so the viewer works on macOS."""
+    sys.exit(subprocess.run([_MJPYTHON, __file__] + sys.argv[1:]).returncode)
+
+
 def init_ctrl(data: mujoco.MjData) -> None:
-    """Seed all position actuators from keyframe so robot holds its pose."""
     for i, ci in enumerate(BODY_CTRL):
         data.ctrl[ci] = data.qpos[BODY_QPOS[i]]
     for i, ci in enumerate(ARM_L_CTRL):
@@ -55,8 +67,9 @@ def init_ctrl(data: mujoco.MjData) -> None:
     data.ctrl[GRIPPER_R_CTRL[0]] = data.qpos[GRIPPER_R_QPOS[0]]
 
 
-def render_cameras(renderer: mujoco.Renderer, model: mujoco.MjModel,
-                   data: mujoco.MjData) -> list[Image.Image]:
+def render_cameras(
+    renderer: mujoco.Renderer, model: mujoco.MjModel, data: mujoco.MjData
+) -> list[Image.Image]:
     cam_names = ["track", "gripper_r_camera_link", "gripper_l_camera_link"]
     images = []
     for cam in cam_names:
@@ -76,6 +89,7 @@ def img_to_tensor(img: Image.Image, device: str) -> torch.Tensor:
 
 def load_policy(device: str):
     from lerobot.policies.smolvla.modeling_smolvla import SmolVLAPolicy
+
     print(f"Loading SmolVLA from {PRETRAINED}...")
     policy = SmolVLAPolicy.from_pretrained(PRETRAINED)
     policy = policy.to(device)
@@ -85,7 +99,6 @@ def load_policy(device: str):
 
 
 def tokenize_task(policy, task: str, device: str) -> tuple[torch.Tensor, torch.Tensor]:
-    """Tokenize task string once using the policy's internal tokenizer."""
     tokenizer = policy.model.vlm_with_expert.processor.tokenizer
     max_len = policy.config.tokenizer_max_length
     enc = tokenizer(
@@ -104,16 +117,16 @@ def main() -> None:
 
     os.chdir(MUJOCO_DIR)
     model = mujoco.MjModel.from_xml_path(SCENE)
-    data  = mujoco.MjData(model)
+    data = mujoco.MjData(model)
     mujoco.mj_resetDataKeyframe(model, data, 0)
     init_ctrl(data)
 
     renderer = mujoco.Renderer(model, height=IMG_H, width=IMG_W)
-    policy   = load_policy(device)
+    policy = load_policy(device)
 
     lang_tokens, lang_mask = tokenize_task(policy, TASK, device)
 
-    chunk_size   = policy.config.n_action_steps
+    chunk_size = policy.config.n_action_steps
     action_queue: list[np.ndarray] = []
 
     print(f"\nTask: '{TASK}'")
@@ -135,12 +148,12 @@ def main() -> None:
                 ).unsqueeze(0)  # (1, 6)
 
                 obs = {
-                    "observation.state":                    state,
-                    "observation.images.camera1":           img_to_tensor(imgs[0], device).unsqueeze(0),
-                    "observation.images.camera2":           img_to_tensor(imgs[1], device).unsqueeze(0),
-                    "observation.images.camera3":           img_to_tensor(imgs[2], device).unsqueeze(0),
-                    "observation.language.tokens":          lang_tokens,
-                    "observation.language.attention_mask":  lang_mask,
+                    "observation.state": state,
+                    "observation.images.camera1": img_to_tensor(imgs[0], device).unsqueeze(0),
+                    "observation.images.camera2": img_to_tensor(imgs[1], device).unsqueeze(0),
+                    "observation.images.camera3": img_to_tensor(imgs[2], device).unsqueeze(0),
+                    "observation.language.tokens": lang_tokens,
+                    "observation.language.attention_mask": lang_mask,
                     "task": [TASK],
                 }
 

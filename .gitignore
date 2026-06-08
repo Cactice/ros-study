@@ -33,6 +33,9 @@ build/
 data/
 datasets/
 
+# mujoco runtime
+MUJOCO_LOG.TXT
+
 # editor / OS
 .DS_Store
 .idea/
