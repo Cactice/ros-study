@@ -4,4 +4,8 @@
         <light name="top" pos="0 0 3" dir="0 0 -1" diffuse="0.8 0.8 0.8" />
         <geom name="floor" type="plane" size="5 5 0.1" rgba="0.6 0.6 0.6 1" />
     </worldbody>
+    <!-- Weld the chassis base to world so the robot doesn't sink under gravity -->
+    <equality>
+        <weld body1="base_link" relpose="0 0 0.03 1 0 0 0" />
+    </equality>
 </mujoco>

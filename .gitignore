@@ -1,4 +1,41 @@
+# environments
 .venv/
 .venv-fw/
+
+# python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# caches
+.cache/
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+
+# model weights / large files
+*.pt
+*.pth
+*.safetensors
+*.ckpt
+*.bin
+*.h5
+*.hdf5
+*.tar
+*.tar.gz
+*.zip
+
+# data
+data/
+datasets/
+
+# editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~

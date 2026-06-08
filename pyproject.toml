@@ -8,6 +8,10 @@ dependencies = [
     "jax",
     "jax-metal",
     "mujoco>=3.9.0",
+    "lerobot[smolvla]",
+    "torch",
+    "torchvision",
+    "pillow",
 ]
 
 [dependency-groups]
