@@ -6,8 +6,8 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "jax",
-    "jax-metal",
-    "mujoco>=3.9.0",
+    "jax-metal; sys_platform == 'darwin'",
+    "mujoco>=3.9.0; sys_platform == 'darwin'",
     "lerobot[smolvla]",
     "torch",
     "torchvision",
