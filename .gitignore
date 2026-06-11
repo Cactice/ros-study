@@ -28,6 +28,8 @@ build/
 *.tar
 *.tar.gz
 *.zip
+*.pem
+
 
 # data
 data/
@@ -35,6 +37,11 @@ datasets/
 
 # mujoco runtime
 MUJOCO_LOG.TXT
+
+# terraform
+infra/.terraform/
+infra/terraform.tfstate
+infra/terraform.tfstate.backup
 
 # editor / OS
 .DS_Store
