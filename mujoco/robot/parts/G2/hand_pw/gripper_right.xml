@@ -4,6 +4,8 @@
     <inertial pos="0.01778808 0.0585332 0.05714529" quat="0.5 0.5 0.5 0.5" mass="1.3757592"
       diaginertia="0.0028087 0.00130123 0.00279029" />
     <geom type="mesh" mesh="gripper_r_base_link" rgba="0.86667 0.86667 0.8902 1"/>
+    <!-- Right wrist camera -->
+    <camera name="cam_hand_right" pos="0 0.06 0.04" euler="1.5708 0 0" />
 
     <body name="workpiece_r" pos="0 0 0">
       <geom type="mesh" mesh="gripper_r_base_link_1" rgba="0.86667 0.86667 0.8902 1" class="collision" density="100.0"/>

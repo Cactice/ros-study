@@ -34,6 +34,8 @@ build/
 # data
 data/
 datasets/
+sample_frames/
+checkpoints/
 
 # mujoco runtime
 MUJOCO_LOG.TXT

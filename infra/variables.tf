@@ -3,7 +3,12 @@ variable "region" {
 }
 
 variable "instance_type" {
-  default = "g6.xlarge"
+  default = "g4dn.xlarge"
+}
+
+variable "checkpoint_bucket" {
+  description = "S3 bucket name for checkpoint syncing"
+  default     = "smolvla-checkpoints-206078779659"
 }
 
 variable "key_name" {

@@ -1,0 +1,20 @@
+policy:
+  type: smolvla
+  pretrained_path: lerobot/smolvla_base
+  push_to_hub: false
+  device: cuda
+
+dataset:
+  repo_id: /home/ubuntu/data/agibot_lerobot/task_354
+  root: /home/ubuntu/data/agibot_lerobot/task_354
+  video_backend: pyav
+
+output_dir: /home/ubuntu/checkpoints/smolvla_g2_task354
+steps: 10000
+batch_size: 16
+save_checkpoint: true
+save_freq: 500
+resume: false
+
+wandb:
+  enable: false

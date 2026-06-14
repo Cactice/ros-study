@@ -151,6 +151,8 @@
                                         range="-0.523 0.523"/>
                                     <!-- Geometry -->
                                     <geom type="mesh" mesh="head_link3" rgba="0.752941 0.752941 0.752941 1"/>
+                                    <!-- Head camera: looks forward (+x world at neutral pose) -->
+                                    <camera name="cam_head" pos="0.05 0 0.03" euler="0 -1.5708 0" />
                                 </body>
                             </body>
                         </body>

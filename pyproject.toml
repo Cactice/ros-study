@@ -31,6 +31,8 @@ include = ["smolvla_mujoco.py"]
 [dependency-groups]
 dev = [
     "ruff>=0.15.16",
+    "sagemaker>=2.200.0",
+    "boto3>=1.34.0",
 ]
 
 [tool.ty.environment]

@@ -1,0 +1,60 @@
+<mujoco model="G2_supermarket">
+    <include file="robot/G2_place_workpiece.xml" />
+    <worldbody>
+        <light name="top" pos="0 0 3" dir="0 0 -1" diffuse="0.8 0.8 0.8" />
+        <geom name="floor" type="plane" size="5 5 0.1" rgba="0.6 0.6 0.6 1" />
+
+        <!-- Robot faces +x. Shelf placed at x=0.9 (arm reach in front). -->
+        <!-- Shelf surface: x=0.9 center, extends 0.2m toward robot (x: 0.7–1.1) -->
+        <!-- Shelf top face at z = 0.75 + 0.02 = 0.77 -->
+        <geom name="shelf_surface" type="box"
+              pos="0.9 0 0.75" size="0.2 0.4 0.02"
+              rgba="0.72 0.52 0.32 1" contype="1" conaffinity="1" />
+        <!-- Back panel -->
+        <geom name="shelf_back" type="box"
+              pos="1.12 0 0.85" size="0.02 0.4 0.35"
+              rgba="0.72 0.52 0.32 1" contype="1" conaffinity="1" />
+        <!-- Legs -->
+        <geom name="shelf_leg_l" type="box"
+              pos="0.9 -0.38 0.375" size="0.02 0.02 0.375"
+              rgba="0.6 0.42 0.22 1" contype="1" conaffinity="1" />
+        <geom name="shelf_leg_r" type="box"
+              pos="0.9  0.38 0.375" size="0.02 0.02 0.375"
+              rgba="0.6 0.42 0.22 1" contype="1" conaffinity="1" />
+
+        <!-- Items — static props on the shelf (no freejoint to avoid keyframe reset ejection) -->
+        <geom name="item_red" type="box" size="0.04 0.04 0.06"
+              pos="0.9 -0.15 0.832"
+              rgba="0.85 0.15 0.1 1" contype="1" conaffinity="1" />
+        <geom name="item_blue" type="box" size="0.035 0.035 0.07"
+              pos="0.9 0.0 0.842"
+              rgba="0.1 0.25 0.8 1" contype="1" conaffinity="1" />
+        <geom name="item_green" type="cylinder" size="0.035 0.055"
+              pos="0.9 0.15 0.827"
+              rgba="0.15 0.7 0.2 1" contype="1" conaffinity="1" />
+
+        <!-- Shopping cart to robot's right (+y side) -->
+        <geom name="cart_base" type="box"
+              pos="0.5 0.75 0.28" size="0.22 0.3 0.02"
+              rgba="0.75 0.75 0.75 1" contype="1" conaffinity="1" />
+        <geom name="cart_body" type="box"
+              pos="0.5 0.75 0.54" size="0.2 0.28 0.24"
+              rgba="0.78 0.78 0.78 0.35" contype="1" conaffinity="1" />
+        <geom name="cart_leg_fl" type="cylinder"
+              pos="0.28 0.46 0.14" size="0.015 0.14"
+              rgba="0.6 0.6 0.6 1" contype="1" conaffinity="1" />
+        <geom name="cart_leg_fr" type="cylinder"
+              pos="0.72 0.46 0.14" size="0.015 0.14"
+              rgba="0.6 0.6 0.6 1" contype="1" conaffinity="1" />
+        <geom name="cart_leg_bl" type="cylinder"
+              pos="0.28 1.04 0.14" size="0.015 0.14"
+              rgba="0.6 0.6 0.6 1" contype="1" conaffinity="1" />
+        <geom name="cart_leg_br" type="cylinder"
+              pos="0.72 1.04 0.14" size="0.015 0.14"
+              rgba="0.6 0.6 0.6 1" contype="1" conaffinity="1" />
+    </worldbody>
+
+    <equality>
+        <weld body1="base_link" relpose="0 0 0.03 1 0 0 0" />
+    </equality>
+</mujoco>

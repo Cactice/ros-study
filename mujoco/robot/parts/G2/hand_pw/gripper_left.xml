@@ -15,6 +15,8 @@
     <geom type="mesh" mesh="gripper_l_base_link_9" rgba="0.86667 0.86667 0.8902 1" class="collision"/>
     <geom type="mesh" mesh="gripper_l_base_link_10" rgba="0.86667 0.86667 0.8902 1" class="collision"/>
     <geom type="mesh" mesh="gripper_l_base_link_11" rgba="0.86667 0.86667 0.8902 1" class="collision"/>
+    <!-- Left wrist camera -->
+    <camera name="cam_hand_left" pos="0 0.06 0.04" euler="1.5708 0 0" />
 
     <!-- 外夹爪（主动） -->
     <body name="gripper_l_outer_link1" pos="0.0265 -0.0134 0.098" quat="0.707107 0 0 0.707107">

@@ -26,9 +26,12 @@ _MJPYTHON = str(_HERE / ".venv/bin/mjpython")
 
 MUJOCO_DIR = _HERE / "mujoco"
 SCENE = "robot_only.xml"
-PRETRAINED = "lerobot/smolvla_base"
+PRETRAINED = str(_HERE / "checkpoints/step1500/pretrained_model")
 
-TASK = "dance randomly"
+TASK = (
+    "Pickup items in the supermarket | "
+    "The robot is in front of the supermarket shelf, with a shopping cart beside it."
+)
 
 # G2 qpos addresses (verified from mj_resetDataKeyframe inspection)
 BODY_QPOS = list(range(7, 12))
@@ -44,9 +47,9 @@ ARM_R_CTRL = list(range(31, 38))
 GRIPPER_L_CTRL = [52]
 GRIPPER_R_CTRL = [53]
 
-# smolvla_base: action_dim=6 → drive right arm joints 1-6 (skip joint 7)
-ACTION_CTRL = ARM_R_CTRL[:6]  # ctrl[31:37]
-STATE_QPOS = ARM_R_QPOS[:6]  # qpos[21:27]
+# finetuned on AgiBot: action_dim=14, left arm first (0:7) then right arm (7:14)
+ACTION_CTRL = ARM_L_CTRL + ARM_R_CTRL  # ctrl[24:38]
+STATE_QPOS = ARM_L_QPOS + ARM_R_QPOS  # qpos[12:19] + qpos[21:28]
 
 IMG_W, IMG_H = 256, 256
 
@@ -70,7 +73,7 @@ def init_ctrl(data: mujoco.MjData) -> None:
 def render_cameras(
     renderer: mujoco.Renderer, model: mujoco.MjModel, data: mujoco.MjData
 ) -> list[Image.Image]:
-    cam_names = ["track", "gripper_r_camera_link", "gripper_l_camera_link"]
+    cam_names = ["cam_head", "cam_hand_right", "cam_hand_left"]
     images = []
     for cam in cam_names:
         try:
@@ -98,19 +101,6 @@ def load_policy(device: str):
     return policy
 
 
-def tokenize_task(policy, task: str, device: str) -> tuple[torch.Tensor, torch.Tensor]:
-    tokenizer = policy.model.vlm_with_expert.processor.tokenizer
-    max_len = policy.config.tokenizer_max_length
-    enc = tokenizer(
-        task,
-        return_tensors="pt",
-        padding="max_length",
-        truncation=True,
-        max_length=max_len,
-    )
-    return enc["input_ids"].to(device), enc["attention_mask"].bool().to(device)
-
-
 def main() -> None:
     device = "mps" if torch.backends.mps.is_available() else "cpu"
     print(f"Device: {device}")
@@ -124,9 +114,8 @@ def main() -> None:
     renderer = mujoco.Renderer(model, height=IMG_H, width=IMG_W)
     policy = load_policy(device)
 
-    lang_tokens, lang_mask = tokenize_task(policy, TASK, device)
-
-    chunk_size = policy.config.n_action_steps
+    # Dataset at 30 Hz, sim timestep=0.001s → apply one action every 33 sim steps.
+    sim_steps_per_action = 33
     action_queue: list[np.ndarray] = []
 
     print(f"\nTask: '{TASK}'")
@@ -140,31 +129,31 @@ def main() -> None:
         while v.is_running():
             mujoco.mj_step(model, data)
 
-            if step % chunk_size == 0:
+            # Refill queue when empty (call policy at 30Hz cadence).
+            if not action_queue:
                 imgs = render_cameras(renderer, model, data)
 
                 state = torch.tensor(
                     data.qpos[STATE_QPOS].astype(np.float32), device=device
-                ).unsqueeze(0)  # (1, 6)
+                ).unsqueeze(0)  # (1, 14)
 
                 obs = {
                     "observation.state": state,
-                    "observation.images.camera1": img_to_tensor(imgs[0], device).unsqueeze(0),
-                    "observation.images.camera2": img_to_tensor(imgs[1], device).unsqueeze(0),
-                    "observation.images.camera3": img_to_tensor(imgs[2], device).unsqueeze(0),
-                    "observation.language.tokens": lang_tokens,
-                    "observation.language.attention_mask": lang_mask,
+                    "observation.images.head": img_to_tensor(imgs[0], device).unsqueeze(0),
+                    "observation.images.hand_right": img_to_tensor(imgs[1], device).unsqueeze(0),
+                    "observation.images.hand_left": img_to_tensor(imgs[2], device).unsqueeze(0),
                     "task": [TASK],
                 }
 
                 with torch.inference_mode():
                     out = policy.select_action(obs)
 
-                # out shape: (1, 6) or (1, chunk, 6) depending on LeRobot version
+                # out shape: (1, 14) or (1, chunk, 14) depending on LeRobot version
                 actions = out.squeeze(0).cpu().numpy()
                 action_queue = list(actions) if actions.ndim == 2 else [actions]
 
-            if action_queue:
+            # Apply one action every 33 sim steps (~30 Hz, matching training frequency).
+            if step % sim_steps_per_action == 0 and action_queue:
                 act = action_queue.pop(0)
                 for i, ci in enumerate(ACTION_CTRL):
                     data.ctrl[ci] = float(act[i])

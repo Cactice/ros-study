@@ -26,6 +26,42 @@ data "aws_ami" "dlami" {
   }
 }
 
+# IAM role so the instance can write checkpoints to S3
+resource "aws_iam_role" "trainer" {
+  name = "smolvla-trainer-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect    = "Allow"
+      Principal = { Service = "ec2.amazonaws.com" }
+      Action    = "sts:AssumeRole"
+    }]
+  })
+}
+
+resource "aws_iam_role_policy" "trainer_s3" {
+  name = "smolvla-trainer-s3"
+  role = aws_iam_role.trainer.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect   = "Allow"
+      Action   = ["s3:PutObject", "s3:GetObject", "s3:ListBucket", "s3:DeleteObject"]
+      Resource = [
+        "arn:aws:s3:::${var.checkpoint_bucket}",
+        "arn:aws:s3:::${var.checkpoint_bucket}/*"
+      ]
+    }]
+  })
+}
+
+resource "aws_iam_instance_profile" "trainer" {
+  name = "smolvla-trainer-profile"
+  role = aws_iam_role.trainer.name
+}
+
 resource "aws_security_group" "smolvla" {
   name        = "smolvla-training"
   description = "SSH access for SmolVLA training"
@@ -50,6 +86,7 @@ resource "aws_spot_instance_request" "trainer" {
   instance_type                  = var.instance_type
   key_name                       = var.key_name
   security_groups                = [aws_security_group.smolvla.name]
+  iam_instance_profile           = aws_iam_instance_profile.trainer.name
   availability_zone              = "us-east-1c"
   spot_price                     = var.spot_price
   wait_for_fulfillment           = true
@@ -65,10 +102,8 @@ resource "aws_spot_instance_request" "trainer" {
   user_data = <<-EOF
     #!/bin/bash
     set -e
-    # Install uv
     curl -LsSf https://astral.sh/uv/install.sh | sh
     echo 'source $HOME/.local/bin/env' >> /home/ubuntu/.bashrc
-    # Install HuggingFace CLI
     pip install -q huggingface_hub
     echo "Instance ready."
   EOF
@@ -80,5 +115,42 @@ resource "aws_spot_instance_request" "trainer" {
 
 output "instance_id" {
   value = aws_spot_instance_request.trainer.spot_instance_id
+}
+
+# ── SageMaker execution role ──────────────────────────────────────────────────
+
+resource "aws_iam_role" "sagemaker" {
+  name = "smolvla-sagemaker-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect    = "Allow"
+      Principal = { Service = "sagemaker.amazonaws.com" }
+      Action    = "sts:AssumeRole"
+    }]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "sagemaker_full" {
+  role       = aws_iam_role.sagemaker.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
+}
+
+resource "aws_iam_role_policy" "sagemaker_s3" {
+  name = "smolvla-sagemaker-s3"
+  role = aws_iam_role.sagemaker.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect   = "Allow"
+      Action   = ["s3:GetObject", "s3:PutObject", "s3:DeleteObject", "s3:ListBucket"]
+      Resource = [
+        "arn:aws:s3:::${var.checkpoint_bucket}",
+        "arn:aws:s3:::${var.checkpoint_bucket}/*",
+      ]
+    }]
+  })
 }
 
